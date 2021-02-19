@@ -1,0 +1,25 @@
+---
+# tasks file for nginx_installer
+
+  - name: Add nginx GPG key
+    apt_key:
+      keyserver: keyserver.ubuntu.com
+      id: ABF5BD827BD9BF62
+
+  - name: Add official nginx repo
+    apt_repository:
+      repo: deb https://nginx.org/packages/debian/ buster nginx
+      state: present
+      filename: nginx
+
+  - name: Add official nginx repo
+    apt_repository:
+      repo: deb-src https://nginx.org/packages/debian/ buster nginx
+      state: present
+      filename: nginx
+
+  - name: Install nginx
+    apt:
+      name: nginx
+      state: latest
+      update_cache: yes
